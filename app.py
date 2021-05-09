@@ -1,3 +1,4 @@
+import os
 import random
 from flask import Flask, request, session
 E = ['able', 'carpenter', 'damage', 'forever', 'helmet', 'mountain', 'record', 'total']
@@ -9,7 +10,7 @@ app.config["SECRET_KEY"] = "akljsghakljsehakljslaksjhdfalksedf"
 app.config['DEBUG'] = True
 
 @app.route("/", methods=["POST", "GET"])
-def hangMan():
+def main():
     finish = ''
     message = ''
     if "guesses" not in session:
@@ -145,3 +146,6 @@ def hangMan():
                 </body>
             </html>
         '''.format(errors=errors, answers=' '.join(session['answers']), guesses=session['guesses'], message=message)
+    
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=8080)
